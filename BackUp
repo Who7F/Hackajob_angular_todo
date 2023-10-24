@@ -1,3 +1,39 @@
+<div id="wrapper">
+  <div id="article">
+    <h1>Good Luck!</h1>
+    <div>
+      <h2>{{ appName }}</h2>
+
+      <form class= "add-todo" (submit)="addTodo()">
+        <input type="text" 
+        size="50" 
+        name = "inputTodo"
+        placeholder="Add New"
+        class = "new-todo-name"
+        [(ngModel)]="inputTodo" >
+        <input type="submit" value="Add New">
+      </form>
+
+      <div class= "todo-item" *ngFor="let todo of todos; let i = index">
+        <div>{{i}}</div>
+        <div class= "todo-name">{{todo.content}}</div>
+        <button class = "delete-tado" (click)="delTodo(i)">Remove</button>
+      </div>
+
+      <p><button class = "delete-tado" (click)="delTodo()">Remove marked</button></p>
+
+
+
+    </div>
+    <div>
+      <p>“Java is to JavaScript what Car is to Carpet.”</p>
+      <p>— Chris Heilmann</p>
+      
+    </div>
+  </div>
+</div>
+
+import { SlicePipe } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
@@ -28,49 +64,19 @@ export class AppComponent {
     }
   }
 
-  delTodo(){
-
+  delTodo(index){
+    this.todos = this.todos.filter((todos, i)=> index != i) 
   }
-
   
+  ngOnInit(){
+    this.todos=[{
+      content: 'Help me IDE, your my only hope',
+      complated: false
+    }]
+  } 
 }
 
 class todo{
   content:string;
   complated:boolean;
 }
-
-
-
-<div id="wrapper">
-  <div id="article">
-    <h1>Good Luck!</h1>
-    <div>
-      <h2>{{ appName }}</h2>
-
-      <form class= "add-todo" (submit)="addTodo()">
-        <input type="text" 
-        size="50" 
-        name = "inputTodo"
-        placeholder="Add New"
-        class = "new-todo-name"
-        [(ngModel)]="inputTodo" >
-        <input type="submit" value="Add New">
-      </form>
-
-      <div class= "todo-item" *ngFor="let todo of todos">
-        <input class= "todo-name" type="checkbox" ng-model="x.done"> <span>{{todo.content}}</span>
-      </div>
-
-      <p><button class = "delete-tado" (click)="delTodo()">Remove marked</button></p>
-
-
-
-    </div>
-    <div>
-      <p>“Java is to JavaScript what Car is to Carpet.”</p>
-      <p>— Chris Heilmann</p>
-      
-    </div>
-  </div>
-</div>

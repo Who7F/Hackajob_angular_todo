@@ -4,24 +4,21 @@
     <div>
       <h2>{{ appName }}</h2>
 
-      <form class= "add-todo" (submit)="addTodo()">
+      <form  (submit)="addTodo()">
         <input type="text" 
         size="50" 
         name = "inputTodo"
         placeholder="Add New"
         class = "new-todo-name"
         [(ngModel)]="inputTodo" >
-        <input type="submit" value="Add New">
+        <input class = "add-todo" type="submit" value="Add New">
       </form>
 
       <div class= "todo-item" *ngFor="let todo of todos; let i = index">
         <div>{{i}}</div>
         <div class= "todo-name">{{todo.content}}</div>
-        <button class = "delete-tado" (click)="delTodo(i)">Remove</button>
+        <button class="delete-todo" (click)="delTodo(i)">Delete Item</button>
       </div>
-
-      <p><button class = "delete-tado" (click)="delTodo()">Remove marked</button></p>
-
 
 
     </div>
@@ -80,3 +77,4 @@ class todo{
   content:string;
   complated:boolean;
 }
+
